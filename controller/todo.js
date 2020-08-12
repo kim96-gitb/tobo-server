@@ -28,6 +28,10 @@ exports.updatetodo = async (req, res, next) => {
   let id = req.body.id;
   let completed = req.body.completed;
 
+  if (completed > 1) {
+    res.status(500).json({ success: false, error: "잘못된 입력입니다" });
+  }
+
   if (!id || !completed) {
     res.status(500).json({ success: false, error: "정보입력을 해주세요" });
   }
