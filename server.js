@@ -1,11 +1,14 @@
 const express = require("express");
 const dotenv = require("dotenv");
-const { json } = require("express");
 dotenv.config({ path: "./config/config.env" });
+
+const todo = require("./routes/todo");
 
 const app = express();
 
-app.use(json());
+app.use(express.json());
+
+app.use("/api/v1/todo", todo);
 
 const PORT = process.env.PORT;
 
