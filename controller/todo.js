@@ -31,6 +31,9 @@ exports.updatetodo = async (req, res, next) => {
   if (completed > 1) {
     res.status(500).json({ success: false, error: "잘못된 입력입니다" });
   }
+  if (!id) {
+    res.status(500).json({ success: false, error: "아이디값이 없습니다" });
+  }
 
   let query = `update todo set completed = ${completed} where id = ${id}`;
   try {
